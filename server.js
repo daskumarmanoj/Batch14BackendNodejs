@@ -1,13 +1,23 @@
 import dotenv from "dotenv";
 dotenv.config();
+dotenv.config({ override: true });
+import cors from "cors";
 import express from "express";
 import connectDb from "./db.js";
 import dns from "dns";
+import cookieParser from "cookie-parser";
 import UserRouter from "./routes/user.route.js";
 import FoodRouter from "./routes/food.route.js";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 app.use("/api/auth", UserRouter);
 app.use("/api/food", FoodRouter);
