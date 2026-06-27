@@ -8,7 +8,7 @@ import {
 const UserRouter = express.Router();
 
 UserRouter.post("/register", registerUser);
-UserRouter.get("/login", LoginUser);
+UserRouter.post("/login", LoginUser);
 UserRouter.get("/logout", LogoutUser);
 
 export default UserRouter;
